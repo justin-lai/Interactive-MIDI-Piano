@@ -17,7 +17,11 @@ angular.module('MIDIPlayer.keys', [])
   }
 
   $scope.keydown = function(keyEvent) {
-    Keys.keyPressHandler(keyEvent.keyCode);
+    Keys.keyDownHandler(keyEvent.keyCode);
+  }
+
+  $scope.keyup = function(keyEvent) {
+    Keys.keyUpHandler(keyEvent.keyCode);
   }
 
   $scope.playNote = Keys.playNote;

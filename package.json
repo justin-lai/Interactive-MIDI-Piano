@@ -1,7 +1,7 @@
 {
   "name": "MIDI keyboard",
-  "version": "0.3.0",
-  "description": "Library to assist in creating HTML5 MIDI apps.",
+  "version": "1.0.0",
+  "description": "Interactive MIDI Keyboard",
   "author": "Justin Lai",
   "repository": {
     "type": "git",

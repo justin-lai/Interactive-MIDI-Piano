@@ -59,6 +59,7 @@ body {
   background: #444;
 }
 
+.pressed,
 .blackKey:active, 
 .whiteKey:active {
   background: red;
@@ -66,9 +67,12 @@ body {
   border-bottom-left-radius: 13px;
   top: 5px;
 }
+
+.pressed.whiteKey,
 .whiteKey:active {
   width: 34.2px;
 }
+.pressed.blackKey
 .blackKey:active {
   /*margin-left: -11.8px;*/
   top: 12px;

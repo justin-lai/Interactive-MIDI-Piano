@@ -32,26 +32,37 @@ angular.module('MIDIPlayer.services', [])
     });   
   };
   
-  var keyPressHandler = function(code) {
-    var keyCodes = {
-      '65': {keyboard: 'a', key: 'C3' },
-      '83': {keyboard: 's', key: 'D3' },
-      '68': {keyboard: 'd', key: 'E3' },
-      '70': {keyboard: 'f', key: 'F3' },
-      '32': {keyboard: 'space', key: 'G3' },
-      '74': {keyboard: 'j', key: 'A3' },
-      '75': {keyboard: 'k', key: 'B3' },
-      '76': {keyboard: 'l', key: 'C4' },
-      '186': {keyboard: ';', key: 'D4' },      
-    }
+  var keyCodes = {
+    '65': {keyboard: 'a', key: 'C3' },
+    '83': {keyboard: 's', key: 'D3' },
+    '68': {keyboard: 'd', key: 'E3' },
+    '70': {keyboard: 'f', key: 'F3' },
+    '32': {keyboard: 'space', key: 'G3' },
+    '74': {keyboard: 'j', key: 'A3' },
+    '75': {keyboard: 'k', key: 'B3' },
+    '76': {keyboard: 'l', key: 'C4' },
+    '186': {keyboard: ';', key: 'D4' },      
+  }
 
+  var keyDownHandler = function(code) {
     if (keyCodes[code]) {
+      $('#'+keyCodes[code].key).addClass('pressed');
       playNote([keyCodes[code].key]);
     }
   };
 
+  var keyUpHandler = function(code) {
+    if (keyCodes[code]) {
+      $('#'+keyCodes[code].key).removeClass('pressed');
+    }
+  };
+
+
+
+
   return {
     playNote: playNote,
-    keyPressHandler: keyPressHandler
+    keyDownHandler: keyDownHandler,
+    keyUpHandler: keyUpHandler
   }
 });
