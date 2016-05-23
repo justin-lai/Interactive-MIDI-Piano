@@ -1,0 +1,19 @@
+{
+  "name": "MIDI keyboard",
+  "version": "0.3.0",
+  "description": "Library to assist in creating HTML5 MIDI apps.",
+  "author": "Justin Lai",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justin-lai/2016-04-mvp.git"
+  },
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-uglify": "~0.1.2"
+  }
+}
