@@ -34,13 +34,19 @@ angular.module('MIDIPlayer.services', [])
   
   var keyCodes = {
     '65': {keyboard: 'a', key: 'C3' },
+    '87': {keyboard: 'w', key: 'Db3' },
     '83': {keyboard: 's', key: 'D3' },
+    '69': {keyboard: 'e', key: 'Eb3' },
     '68': {keyboard: 'd', key: 'E3' },
     '70': {keyboard: 'f', key: 'F3' },
+    '85': {keyboard: 'u', key: 'Gb3' },
     '32': {keyboard: 'space', key: 'G3' },
+    '73': {keyboard: 'i', key: 'Ab3' },
     '74': {keyboard: 'j', key: 'A3' },
+    '79': {keyboard: 'o', key: 'Bb3' },
     '75': {keyboard: 'k', key: 'B3' },
     '76': {keyboard: 'l', key: 'C4' },
+    '80': {keyboard: 'p', key: 'Db3' },
     '186': {keyboard: ';', key: 'D4' },      
   }
 
