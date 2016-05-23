@@ -2,8 +2,6 @@ angular.module('MIDIPlayer.services', [])
 
 .factory('Keys', function() {
   var playNote = function(key) {
-    console.log(key);
-    console.log(typeof key);
 
     var noteValue = MIDI.keyToNote[key];
     var noteDuration = Number(document.getElementsByClassName('noteDuration')[0].value);
