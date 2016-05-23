@@ -16,5 +16,9 @@ angular.module('MIDIPlayer.keys', [])
     return key.indexOf('b') === -1 ? 'whiteKey' : 'blackKey'; 
   }
 
+  $scope.keydown = function(keyEvent) {
+    Keys.keyPressHandler(keyEvent.keyCode);
+  }
+
   $scope.playNote = Keys.playNote;
 })

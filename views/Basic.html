@@ -25,14 +25,14 @@
 	<script src="../app/keys/keys.js" type="text/javascript"></script>
 </head>
 
-<body>
+<body ng-controller="KeysController" ng-keydown="keydown($event)">
 	<form action="/">
 		Note Duration: <input type="text" class="noteDuration" value=".75"><br>
 		Note Delay: <input type="text" class="noteDelay" value="0"><br>
 		Note Velocity: <input type="text" class="noteVelocity" value="127"><br>
 	</form>
 
-	<div id="piano" ng-controller="KeysController">
+	<div id="piano">
 		<div class="keys" ng-repeat="key in data.keys">
 			<div ng-class="keyColor(key)" ng-mousedown="playNote(key)">
 				<span>{{key}}</span>
