@@ -22,6 +22,7 @@ midi.BPM = 120;
 
 midi.start =
 midi.resume = function(onsuccess) {
+	console.log('OMG');
     if (midi.currentTime < -1) {
     	midi.currentTime = -1;
     }

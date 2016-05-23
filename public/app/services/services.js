@@ -61,7 +61,9 @@ angular.module('MIDIPlayer.services', [])
     }
   };
 
-
+  // player = MIDI.Player;
+  // player.timeWarp = 1; // speed the song is played back
+  // player.loadFile(song[songid++ % song.length], player.start);
 
 
   return {
