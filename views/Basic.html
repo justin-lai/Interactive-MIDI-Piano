@@ -61,12 +61,30 @@
 		MIDI.loadPlugin({
 			soundfontUrl: "./examples/soundfont/",
 			instrument: "acoustic_grand_piano",
-			onprogress: function(state, progress) {
-			  console.log(state, progress);
-			},
+		
       onsuccess: function() {
-        MIDI.Player.loadFile("../examples/summer.mid", function() {
+      	MIDI.Player.timeWarp = 1;
+        MIDI.Player.loadFile("../examples/howls.mid", function() {
         	MIDI.Player.start();
+        	MIDI.Player.addListener(function(data) {
+        		var note = MIDI.noteToKey[data.note];
+
+        		// var pianoKey = data.note - 21;
+        		// var d = colorElements[pianoKey];
+        		// if (d) {
+        			if (data.message === 144) {
+      					$('#'+note).addClass('pressed');
+        				// var map = colorMap[data.note - 27];
+        				// if (map) d.style.background = map.hex;
+        				// d.style.color = "#fff";
+        			} else {
+      					$('#'+note).removeClass('pressed');
+
+        				// d.style.background = "";
+        				// d.style.color = "";
+        			}
+        		// }
+        	});
       	});
       }
   	});

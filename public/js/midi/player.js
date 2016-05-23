@@ -22,11 +22,10 @@ midi.BPM = 120;
 
 midi.start =
 midi.resume = function(onsuccess) {
-	console.log('OMG');
-    if (midi.currentTime < -1) {
-    	midi.currentTime = -1;
-    }
-    startAudio(midi.currentTime, null, onsuccess);
+  if (midi.currentTime < -1) {
+  	midi.currentTime = -1;
+  }
+  startAudio(midi.currentTime, null, onsuccess);
 };
 
 midi.pause = function() {
