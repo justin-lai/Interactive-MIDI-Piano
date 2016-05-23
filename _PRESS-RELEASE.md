@@ -18,24 +18,31 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Interactive MIDI Keyboard 
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  An application for piano beginners to learn and toy with an interactive keyboard online that doesn't suck
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  The Interactive MIDI Keyboard will allow users to click or enter keys to play MIDI generated sounds. Users can also create, playback, and visualize generated MIDIs
 
 ## Problem ##
   > Describe the problem your product solves.
+  Users with limited access to a real piano can use this application for learning, playing, and creating
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Offers a free online application that combines virtual keyboards with MIDI file generation
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  This app is great.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Needs to implement MIDI library and generate a user-friendly interface to interact with the keyboard
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
