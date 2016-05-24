@@ -51,11 +51,13 @@ angular.module('MIDIPlayer.services', [])
   }
 })
 .factory('PlayerControls', function() {
-  
+
   var play = function() {
-    var complete = false;
-    if (!MIDI.Player.playing) {
+    if (MIDI.Player.currentTime / MIDI.Player.endTime > .9999) {
       MIDI.Player.stop();
+    }
+    
+    if (!MIDI.Player.currentTime) {
       MIDI.loadPlugin({
         soundfontUrl: "./examples/soundfont/",
         instrument: "acoustic_grand_piano",
@@ -76,9 +78,6 @@ angular.module('MIDIPlayer.services', [])
                 $('#'+note).removeClass('pressed');
               }
 
-              if (MIDI.Player.currentTime / MIDI.Player.endTime > .9999) {
-                complete = true
-              }
             });
           });
         }
