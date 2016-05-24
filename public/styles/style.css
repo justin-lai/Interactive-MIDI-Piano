@@ -3,8 +3,40 @@ body {
   background: #444;
 }
 
+/*TOPBAR */
+.nav-container {
+  position: absolute;
+  width: 90%;
+  height:100px;
+}
+
+form {
+  float: left;
+}
+.player-controls {
+  position: absolute;
+  left: 300px;
+}
+
+.player-track-full,
+.player-track {
+  height: 20px;
+}
+.player-track-full {
+  position: absolute;
+  background-color: #aaa;
+  z-index: -1;
+}
+.player-track {
+  background-color: red;
+  z-index: 1;
+}
+
+
+
 #piano {
-  margin-top: 10px;
+  position: absolute;
+  top: 10%;
   width: 1200px;
 }
 

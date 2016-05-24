@@ -50,11 +50,59 @@ angular.module('MIDIPlayer.services', [])
     keyUpHandler: keyUpHandler
   }
 })
-.factory('Player', function() {
-  var play = function() {};
+.factory('PlayerControls', function() {
+  
+  var play = function() {
+    var complete = false;
+    if (!MIDI.Player.playing) {
+      MIDI.Player.stop();
+      MIDI.loadPlugin({
+        soundfontUrl: "./examples/soundfont/",
+        instrument: "acoustic_grand_piano",
+        
+        onsuccess: function() {    
+          updatePlayer();
+          MIDI.programChange(1, 0);
+          var player = MIDI.Player;
+          player.timeWarp = .3;
+          player.loadFile("../examples/twinkle_twinkle.mid", function() {
+            player.start();
+            player.addListener(function(data) {
+              var note = MIDI.noteToKey[data.note];
+         
+              if (data.message === 144) {
+                $('#'+note).addClass('pressed');
+              } else {
+                $('#'+note).removeClass('pressed');
+              }
+
+              if (MIDI.Player.currentTime / MIDI.Player.endTime > .9999) {
+                complete = true
+              }
+            });
+          });
+        }
+      });
+    } else {
+      MIDI.Player.resume();
+    }
+
+  };
+
+  var updatePlayer = function() {
+      // $('.player-track').width(500);
+
+    MIDI.Player.setAnimation(function(data) {
+      var percentComplete = data.now / data.end;
+      if (percentComplete > 1) percentComplete = 1;
+
+      $('.player-track').width(percentComplete * $('.player-track-full').width());
+
+    })
+  };
 
   return {
     play: play,
-    pause: pause
+    updatePlayer: updatePlayer
   }
 });

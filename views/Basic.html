@@ -39,15 +39,21 @@
 </head>
 
 <body ng-controller="KeysController" ng-keydown="keydown($event)" ng-keyup="keyup($event)">
-	<form action="/">
-		Note Duration: <input type="text" class="noteDuration" value=".75"><br>
-		Note Delay: <input type="text" class="noteDelay" value="0"><br>
-		Note Velocity: <input type="text" class="noteVelocity" value="127"><br>
-	</form>
+	<div class="nav-container">
+		<form action="/">
+			Note Duration: <input type="text" class="noteDuration" value=".75"><br>
+			Note Delay: <input type="text" class="noteDelay" value="0"><br>
+			Note Velocity: <input type="text" class="noteVelocity" value="127"><br>
+		</form>
 
-	<div class="player-controls" ng-controller="PlayerController">
-		<input type="button" ng-click="play()" value="play">
-		<input type="button" ng-click="pause()" value="pause">
+		<div class="player-controls" ng-controller="PlayerController">
+			<input type="button" ng-click="play()" value="play">
+			<input type="button" ng-click="pause()" value="pause">
+			<input type="button" ng-click="stop()" value="stop">
+			<div class="player-track-full"></div>
+			<div class="player-track"></div>
+			<!-- <span>{{percentComplete}}</span> -->
+		</div>
 	</div>
 
 	<div id="piano">
@@ -62,28 +68,8 @@
 	<script type="text/javascript">
 
 	window.onload = function () {
-		MIDI.loadPlugin({
-			soundfontUrl: "./examples/soundfont/",
-			instrument: "acoustic_grand_piano",
-			
-      onsuccess: function() {    
-  			MIDI.programChange(1, 0);
-  			var player = MIDI.Player;
-      	player.timeWarp = 1;
-        player.loadFile("../examples/summer.mid", function() {
-        	player.start();
-        	player.addListener(function(data) {
-        		var note = MIDI.noteToKey[data.note];
-       
-      			if (data.message === 144) {
-    					$('#'+note).addClass('pressed');
-      			} else {
-  						$('#'+note).removeClass('pressed');
-      			}
-        	});
-      	});
-      }
-  	});
+		$('.player-track-full').width(200);
+    $('.player-track').width(0);	
 	};
 
 	</script>
