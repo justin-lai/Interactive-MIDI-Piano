@@ -42,17 +42,25 @@
 	<div class="nav-container">
 		<form action="/">
 			Note Duration: <input type="text" class="noteDuration" value=".75"><br>
+			Note Volume: <input type="text" class="noteVelocity" value="127"><br>
 			Note Delay: <input type="text" class="noteDelay" value="0"><br>
-			Note Velocity: <input type="text" class="noteVelocity" value="127"><br>
 		</form>
 
 		<div class="player-controls" ng-controller="PlayerController">
+			Play Speed: <input type="text" id="playbackSpeed" value="1"><br>
 			<input type="button" ng-click="play()" value="play">
 			<input type="button" ng-click="pause()" value="pause">
 			<input type="button" ng-click="stop()" value="stop">
-			<div class="player-track-full"></div>
-			<div class="player-track"></div>
+			<div id="player-track-full">
+				<div id="player-track"></div>
+			</div>
 			<!-- <span>{{percentComplete}}</span> -->
+		</div>
+
+		<div class="options">
+			<select ng-model="filename" name="filename">
+				
+			</select>
 		</div>
 	</div>
 
@@ -68,8 +76,7 @@
 	<script type="text/javascript">
 
 	window.onload = function () {
-		$('.player-track-full').width(200);
-    $('.player-track').width(0);	
+		$('#player-track-full').width(200);
 	};
 
 	</script>

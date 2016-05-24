@@ -53,11 +53,8 @@ angular.module('MIDIPlayer.services', [])
 .factory('PlayerControls', function() {
 
   var play = function() {
-    if (MIDI.Player.currentTime / MIDI.Player.endTime > .9999) {
-      MIDI.Player.stop();
-    }
-    
     if (!MIDI.Player.currentTime) {
+      console.log(MIDI.Player.playing);
       MIDI.loadPlugin({
         soundfontUrl: "./examples/soundfont/",
         instrument: "acoustic_grand_piano",
@@ -66,7 +63,8 @@ angular.module('MIDIPlayer.services', [])
           updatePlayer();
           MIDI.programChange(1, 0);
           var player = MIDI.Player;
-          player.timeWarp = .3;
+          
+          player.timeWarp = 1 / $('#playbackSpeed').val();
           player.loadFile("../examples/twinkle_twinkle.mid", function() {
             player.start();
             player.addListener(function(data) {
@@ -82,21 +80,28 @@ angular.module('MIDIPlayer.services', [])
           });
         }
       });
-    } else {
+    } else if (!MIDI.Player.playing) {
       MIDI.Player.resume();
     }
 
   };
 
   var updatePlayer = function() {
-      // $('.player-track').width(500);
-
+    //update the width of the player track
     MIDI.Player.setAnimation(function(data) {
       var percentComplete = data.now / data.end;
-      if (percentComplete > 1) percentComplete = 1;
-
-      $('.player-track').width(percentComplete * $('.player-track-full').width());
-
+      if (percentComplete > 1) {
+        percentComplete = 1;
+      }
+      var now = data.now >> 0;
+      var end = data.end >> 0;
+      var newWidth = percentComplete * 100 + '%'
+      $('#player-track').css('width', newWidth);
+      
+      if (now === end) {
+        MIDI.Player.stop();
+        $('.key').removeClass('pressed')
+      }
     })
   };
 

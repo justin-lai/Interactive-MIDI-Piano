@@ -13,30 +13,45 @@ body {
 form {
   float: left;
 }
+form input {
+  width: 20px;
+  left: 120px;
+  margin-bottom: 5px;
+  text-align: right;
+}
+
 .player-controls {
   position: absolute;
   left: 300px;
+  background-color: black;
+  width: 200px;
+  padding: 5px;
+}
+#playbackSpeed {
+  width: 20px;
+  text-align: right;
 }
 
-.player-track-full,
-.player-track {
+#player-track-full,
+#player-track {
   height: 20px;
 }
-.player-track-full {
-  position: absolute;
+#player-track-full {
+  /*position: absolute;*/
   background-color: #aaa;
-  z-index: -1;
-}
-.player-track {
-  background-color: red;
   z-index: 1;
+}
+#player-track {
+  background-color: red;
+  z-index: 10;
+  width: 0%;
 }
 
 
 
 #piano {
   position: absolute;
-  top: 10%;
+  top: 12a%;
   width: 1200px;
 }
 
