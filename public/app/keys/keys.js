@@ -5,22 +5,25 @@ angular.module('MIDIPlayer.keys', [])
     notes: [],
     keys: [],
     keyCodes: {
-      '65': {keyboard: 'a', key: 'C3' },
-      '87': {keyboard: 'w', key: 'Db3' },
-      '83': {keyboard: 's', key: 'D3' },
-      '69': {keyboard: 'e', key: 'Eb3' },
-      '68': {keyboard: 'd', key: 'E3' },
-      '70': {keyboard: 'f', key: 'F3' },
-      '85': {keyboard: 'u', key: 'Gb3' },
-      '32': {keyboard: 'space', key: 'G3' },
-      '73': {keyboard: 'i', key: 'Ab3' },
-      '74': {keyboard: 'j', key: 'A3' },
-      '79': {keyboard: 'o', key: 'Bb3' },
-      '75': {keyboard: 'k', key: 'B3' },
-      '76': {keyboard: 'l', key: 'C4' },
-      '80': {keyboard: 'p', key: 'Db3' },
-      '186': {keyboard: ';', key: 'D4' },      
+      '65': {keyboard: 'a', key: 'C5' },
+      '87': {keyboard: 'w', key: 'Db5' },
+      '83': {keyboard: 's', key: 'D5' },
+      '69': {keyboard: 'e', key: 'Eb5' },
+      '68': {keyboard: 'd', key: 'E5' },
+      '70': {keyboard: 'f', key: 'F5' },
+      '84': {keyboard: 't', key: 'Gb5' },
+      '71': {keyboard: 'g', key: 'G5' },
+      '89': {keyboard: 'y', key: 'Ab5' },
+      '72': {keyboard: 'h', key: 'A5' },
+      '85': {keyboard: 'u', key: 'Bb5' },
+      '74': {keyboard: 'j', key: 'B5' },
+      '75': {keyboard: 'k', key: 'C6' },
+      '79': {keyboard: 'o', key: 'Db6' },
+      '76': {keyboard: 'l', key: 'D6' },
+      '80': {keyboard: 'p', key: 'Eb6' },  
+      '186': {keyboard: ';', key: 'E6' }
     },
+
     keysPressed: {}
   }
 
@@ -38,21 +41,26 @@ angular.module('MIDIPlayer.keys', [])
   $scope.keydown = function(keyEvent) {
     var key = $scope.data.keyCodes[keyEvent.keyCode].key;
     if (!$scope.data.keysPressed[key]) {
-      Keys.keyDownHandler(keyEvent.keyCode);
+      Keys.keyDownHandler(keyEvent.keyCode, $scope.data.keyCodes);
       $scope.data.keysPressed[key] = true;
-      console.log($scope.data.keysPressed);
     }
   }
 
   $scope.keyup = function(keyEvent) {
     var key = $scope.data.keyCodes[keyEvent.keyCode].key;
-    Keys.keyUpHandler(keyEvent.keyCode);
+    Keys.keyUpHandler(keyEvent.keyCode, $scope.data.keyCodes);
     if ($scope.data.keysPressed[key]) {
-      console.log('key deleted');
-      console.log($scope.data.keysPressed);
       delete $scope.data.keysPressed[key];
     }
   }
+
+  $scope.keyboardKey = function(key) {
+    for (var k in $scope.data.keyCodes) {
+      if ($scope.data.keyCodes[k].key === key) {
+        return $scope.data.keyCodes[k].keyboard;
+      }
+    }
+  };
 
   $scope.playNote = Keys.playNote;
 

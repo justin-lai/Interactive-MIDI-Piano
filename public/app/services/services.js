@@ -30,45 +30,31 @@ angular.module('MIDIPlayer.services', [])
     });   
   };
   
-  var keyCodes = {
-    '65': {keyboard: 'a', key: 'C3' },
-    '87': {keyboard: 'w', key: 'Db3' },
-    '83': {keyboard: 's', key: 'D3' },
-    '69': {keyboard: 'e', key: 'Eb3' },
-    '68': {keyboard: 'd', key: 'E3' },
-    '70': {keyboard: 'f', key: 'F3' },
-    '85': {keyboard: 'u', key: 'Gb3' },
-    '32': {keyboard: 'space', key: 'G3' },
-    '73': {keyboard: 'i', key: 'Ab3' },
-    '74': {keyboard: 'j', key: 'A3' },
-    '79': {keyboard: 'o', key: 'Bb3' },
-    '75': {keyboard: 'k', key: 'B3' },
-    '76': {keyboard: 'l', key: 'C4' },
-    '80': {keyboard: 'p', key: 'Db3' },
-    '186': {keyboard: ';', key: 'D4' },      
-  }
 
-  var keyDownHandler = function(code) {
+  var keyDownHandler = function(code, keyCodes) {
     if (keyCodes[code]) {
       $('#'+keyCodes[code].key).addClass('pressed');
       playNote([keyCodes[code].key]);
     }
   };
 
-  var keyUpHandler = function(code) {
+  var keyUpHandler = function(code, keyCodes) {
     if (keyCodes[code]) {
       $('#'+keyCodes[code].key).removeClass('pressed');
     }
   };
 
-  // player = MIDI.Player;
-  // player.timeWarp = 1; // speed the song is played back
-  // player.loadFile(song[songid++ % song.length], player.start);
-
-
   return {
     playNote: playNote,
     keyDownHandler: keyDownHandler,
     keyUpHandler: keyUpHandler
+  }
+})
+.factory('Player', function() {
+  var play = function() {};
+
+  return {
+    play: play,
+    pause: pause
   }
 });

@@ -51,6 +51,17 @@ body {
   left: 8px;
 }
 
+.whiteKey div,
+.blackKey div {
+  padding-top: 20px;
+  color: white;
+  text-align: center;
+}
+.whiteKey div{
+  color: black;
+  padding-top: 24px
+}
+
 .whiteKey:hover {
   background: #ddd;
 }

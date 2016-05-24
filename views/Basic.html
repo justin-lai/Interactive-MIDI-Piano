@@ -7,6 +7,13 @@
 	<script src="../inc/shim/Base64.js" type="text/javascript"></script>
 	<script src="../inc/shim/Base64binary.js" type="text/javascript"></script>
 	<script src="../inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+	<script src="../inc/shim/WebMIDIAPI.js" type="text/javascript"></script>
+	
+	<!-- jasmid -->
+	<script src="../inc/jasmid/stream.js"></script>
+	<script src="../inc/jasmid/midifile.js"></script>
+	<script src="../inc/jasmid/replayer.js"></script>
+
 	<!-- midi.js package -->
 	<script src="../js/midi/audioDetect.js" type="text/javascript"></script>
 	<script src="../js/midi/gm.js" type="text/javascript"></script>
@@ -23,21 +30,12 @@
 	<script src="../lib/angular.min.js" type="text/javascript"></script>
 	<script src="../lib/jquery.min.js" type="text/javascript"></script>
 
-	<!-- player -->
-	<script src="../app/player.js" type="text/javascript"></script>
+	<!-- app -->
+	<script src="../app/app.js" type="text/javascript"></script>
 	<script src="../app/services/services.js" type="text/javascript"></script>
 	<script src="../app/keys/keys.js" type="text/javascript"></script>
+	<script src="../app/player/player.js" type="text/javascript"></script>
 
-	<!-- jasmid -->
-	<script src="../inc/jasmid/stream.js"></script>
-	<script src="../inc/jasmid/midifile.js"></script>
-	<script src="../inc/jasmid/replayer.js"></script>
-
-	<!-- shim -->
-	<!-- <script src="../inc/shim/Base64.js" type="text/javascript"></script>
-	<script src="../inc/shim/Base64binary.js" type="text/javascript"></script>
-	<script src="../inc/shim/WebAudioAPI.js" type="text/javascript"></script>
-	<script src="../inc/shim/WebMIDIAPI.js" type="text/javascript"></script> -->
 </head>
 
 <body ng-controller="KeysController" ng-keydown="keydown($event)" ng-keyup="keyup($event)">
@@ -47,9 +45,15 @@
 		Note Velocity: <input type="text" class="noteVelocity" value="127"><br>
 	</form>
 
+	<div class="player-controls" ng-controller="PlayerController">
+		<input type="button" ng-click="play()" value="play">
+		<input type="button" ng-click="pause()" value="pause">
+	</div>
+
 	<div id="piano">
 		<div class="keys" ng-repeat="key in data.keys">
-			<div id="{{key}}" ng-class="keyColor(key)" ng-mousedown="playNote(key)">
+			<div id="{{key}}" class="key" ng-class="keyColor(key)" ng-mousedown="playNote(key)">
+				<div>{{keyboardKey(key)}}</div>
 				<span>{{key}}</span>
 			</div>
 		</div>
@@ -61,34 +65,25 @@
 		MIDI.loadPlugin({
 			soundfontUrl: "./examples/soundfont/",
 			instrument: "acoustic_grand_piano",
-		
-      onsuccess: function() {
-      	MIDI.Player.timeWarp = 1;
-        MIDI.Player.loadFile("../examples/howls.mid", function() {
-        	MIDI.Player.start();
-        	MIDI.Player.addListener(function(data) {
+			
+      onsuccess: function() {    
+  			MIDI.programChange(1, 0);
+  			var player = MIDI.Player;
+      	player.timeWarp = 1;
+        player.loadFile("../examples/summer.mid", function() {
+        	player.start();
+        	player.addListener(function(data) {
         		var note = MIDI.noteToKey[data.note];
-
-        		// var pianoKey = data.note - 21;
-        		// var d = colorElements[pianoKey];
-        		// if (d) {
-        			if (data.message === 144) {
-      					$('#'+note).addClass('pressed');
-        				// var map = colorMap[data.note - 27];
-        				// if (map) d.style.background = map.hex;
-        				// d.style.color = "#fff";
-        			} else {
-      					$('#'+note).removeClass('pressed');
-
-        				// d.style.background = "";
-        				// d.style.color = "";
-        			}
-        		// }
+       
+      			if (data.message === 144) {
+    					$('#'+note).addClass('pressed');
+      			} else {
+  						$('#'+note).removeClass('pressed');
+      			}
         	});
       	});
       }
   	});
-		// console.log(MIDI.noteToKey);
 	};
 
 	</script>
