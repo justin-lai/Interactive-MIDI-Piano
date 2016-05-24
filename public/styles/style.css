@@ -1,35 +1,39 @@
 body {
   color: white;
-  background: #444;
+  background: #666;
 }
 
 /*TOPBAR */
 .nav-container {
   position: absolute;
-  width: 90%;
+  width: 1175px;
   height:100px;
+  background-color: black;
+  box-shadow: 10px 5px black;
 }
-
-form {
+.note-options {
+  margin-left: 20px;
+  margin-top: 5px;
   float: left;
 }
-form input {
+
+.note-options input,
+#playbackSpeed {
   width: 20px;
   left: 120px;
-  margin-bottom: 5px;
+  margin-top: 5px;
   text-align: right;
 }
 
-.player-controls {
+.play-options {
   position: absolute;
-  left: 300px;
-  background-color: black;
-  width: 200px;
-  padding: 5px;
+  left: 180px;
 }
-#playbackSpeed {
-  width: 20px;
-  text-align: right;
+.file-options,
+.player-controls {
+  margin-top: 10px;
+  margin-right: 20px;
+  display: inline-block;
 }
 
 #player-track-full,
@@ -37,9 +41,9 @@ form input {
   height: 20px;
 }
 #player-track-full {
-  /*position: absolute;*/
   background-color: #aaa;
   z-index: 1;
+  width: 200px;
 }
 #player-track {
   background-color: red;
@@ -51,7 +55,7 @@ form input {
 
 #piano {
   position: absolute;
-  top: 12a%;
+  top: 12%;
   width: 1200px;
 }
 

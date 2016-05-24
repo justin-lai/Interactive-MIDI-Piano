@@ -40,27 +40,30 @@
 
 <body ng-controller="KeysController" ng-keydown="keydown($event)" ng-keyup="keyup($event)">
 	<div class="nav-container">
-		<form action="/">
-			Note Duration: <input type="text" class="noteDuration" value=".75"><br>
-			Note Volume: <input type="text" class="noteVelocity" value="127"><br>
-			Note Delay: <input type="text" class="noteDelay" value="0"><br>
-		</form>
-
-		<div class="player-controls" ng-controller="PlayerController">
-			Play Speed: <input type="text" id="playbackSpeed" value="1"><br>
-			<input type="button" ng-click="play()" value="play">
-			<input type="button" ng-click="pause()" value="pause">
-			<input type="button" ng-click="stop()" value="stop">
-			<div id="player-track-full">
-				<div id="player-track"></div>
-			</div>
-			<!-- <span>{{percentComplete}}</span> -->
+		<div class="note-options">
+			<form action="/">
+				Note Duration: <input type="text" class="noteDuration" value=".75"><br>
+				Note Volume: <input type="text" class="noteVelocity" value="127"><br>
+				Note Delay: <input type="text" class="noteDelay" value="0"><br>
+			</form>
 		</div>
 
-		<div class="options">
-			<select ng-model="filename" name="filename">
-				
-			</select>
+		<div class="play-options" ng-controller="PlayerController">
+			<div class="file-options">
+				File: <select ng-model="filename" name="filename" ng-options="file for file in files" ng-init="filename = filename || files[0]">
+				</select>
+				<div>
+					Play Speed: <input type="text" id="playbackSpeed" value="1">
+				</div>
+			</div>
+			<div class="player-controls">
+				<div id="player-track-full">
+					<div id="player-track"></div>
+				</div>
+				<input type="button" ng-click="play(filename)" value="play">
+				<input type="button" ng-click="pause()" value="pause">
+				<input type="button" ng-click="stop()" value="stop">
+			</div>
 		</div>
 	</div>
 
@@ -76,7 +79,7 @@
 	<script type="text/javascript">
 
 	window.onload = function () {
-		$('#player-track-full').width(200);
+		// $('#player-track-full').width(200);
 	};
 
 	</script>

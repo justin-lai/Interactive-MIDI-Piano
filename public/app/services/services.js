@@ -52,9 +52,8 @@ angular.module('MIDIPlayer.services', [])
 })
 .factory('PlayerControls', function() {
 
-  var play = function() {
+  var play = function(filename) {
     if (!MIDI.Player.currentTime) {
-      console.log(MIDI.Player.playing);
       MIDI.loadPlugin({
         soundfontUrl: "./examples/soundfont/",
         instrument: "acoustic_grand_piano",
@@ -65,7 +64,7 @@ angular.module('MIDIPlayer.services', [])
           var player = MIDI.Player;
           
           player.timeWarp = 1 / $('#playbackSpeed').val();
-          player.loadFile("../examples/twinkle_twinkle.mid", function() {
+          player.loadFile("../examples/" + filename, function() {
             player.start();
             player.addListener(function(data) {
               var note = MIDI.noteToKey[data.note];
